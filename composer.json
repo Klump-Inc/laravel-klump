@@ -1,0 +1,34 @@
+{
+    "name": "klump/laravel-klump",
+    "description": "Klump Buy Now Pay Later integration for Laravel",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "illuminate/support": "^10.0|^11.0|^12.0",
+        "livewire/livewire": "^3.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Klump\\LaravelKlump\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Klump\\LaravelKlump\\KlumpServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Klump",
+            "email": "info@useklump.com"
+        },
+        {
+            "name": "Imo-owo Nabuk",
+            "email": "richienabuk@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
