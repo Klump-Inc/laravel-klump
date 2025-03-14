@@ -8,11 +8,11 @@ class KlumpService
     protected $secretKey;
     protected $testMode;
 
-    public function __construct($publicKey, $secretKey, $testMode = false)
+    public function __construct()
     {
-        $this->publicKey = $publicKey;
-        $this->secretKey = $secretKey;
-        $this->testMode = $testMode;
+        $this->publicKey = config('klump.public_key');
+        $this->secretKey = config('klump.secret_key');
+        $this->testMode = config('klump.test_mode', false);
     }
 
     public function verifyWebhookSignature($payload, $signature)
@@ -21,27 +21,24 @@ class KlumpService
         return hash_equals($expectedSignature, $signature);
     }
 
-    public function formatPayload($order, $items, $customer)
+    public function formatPayload($order, $items, $customer, $meta_data = [])
     {
+        $amount = $order['total'] ?? $order['amount'] ?? 0;
+        $reference = $order['reference'] ?? 'ORD-' . uniqid();
+
         return [
             'publicKey' => $this->publicKey,
             'data' => [
-                'amount' => $order['total'],
-                'currency' => $order['currency'],
+                'amount' => $amount,
+                'currency' => $order['currency'] ?? 'NGN',
                 'email' => $customer['email'],
-                'merchant_reference' => $order['reference'],
+                'merchant_reference' => $reference,
                 'shipping_fee' => $order['shipping_fee'] ?? 0,
-                'redirect_url' => $order['redirect_url'],
+                'redirect_url' => $order['redirect_url'] ?? null,
                 'items' => $items,
                 'meta_data' => [
                     'order_id' => $order['id'],
-                    'custom_fields' => [
-                        [
-                            'display_name' => 'Order ID',
-                            'variable_name' => 'order_id',
-                            'value' => $order['id']
-                        ]
-                    ],
+                    'custom_fields' => $meta_data,
                     'klump_plugin_source' => 'laravel',
                     'klump_plugin_version' => '1.0.0'
                 ]
