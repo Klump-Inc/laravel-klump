@@ -5,6 +5,7 @@ namespace Klump\LaravelKlump;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Klump\LaravelKlump\Http\Livewire\KlumpCheckout;
+use Klump\LaravelKlump\Services\KlumpService;
 
 class KlumpServiceProvider extends ServiceProvider
 {
@@ -26,11 +27,7 @@ class KlumpServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/klump.php', 'klump');
 
         $this->app->singleton('klump', function ($app) {
-            return new Services\KlumpService(
-                config('klump.public_key'),
-                config('klump.secret_key'),
-                config('klump.test_mode')
-            );
+            return new KlumpService();
         });
     }
 }
