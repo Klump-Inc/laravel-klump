@@ -2,6 +2,7 @@
     "name": "klump/laravel-klump",
     "description": "Klump Buy Now Pay Later integration for Laravel",
     "type": "library",
+    "version": "v1.0.0",
     "require": {
         "php": "^8.0",
         "illuminate/support": "^10.0|^11.0|^12.0",
