@@ -78,7 +78,7 @@ class CheckoutController extends Controller
         $items = [
             [
                 'name' => 'Product Name',
-                'price' => 50000, // Price in kobo/cents
+                'unit_price' => 50000, // Price in kobo/cents
                 'quantity' => 1,
                 'description' => 'Product description',
             ],
