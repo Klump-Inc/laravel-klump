@@ -1,5 +1,5 @@
 {
-    "name": "klump/klump",
+    "name": "klump/laravel-klump",
     "description": "Klump Buy Now Pay Later integration for Laravel",
     "type": "library",
     "version": "v1.0.0",
