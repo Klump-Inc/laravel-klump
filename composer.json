@@ -1,5 +1,5 @@
 {
-    "name": "klump/laravel-klump",
+    "name": "klump/klump",
     "description": "Klump Buy Now Pay Later integration for Laravel",
     "type": "library",
     "version": "v1.0.0",
@@ -22,10 +22,6 @@
         }
     },
     "authors": [
-        {
-            "name": "Klump",
-            "email": "info@useklump.com"
-        },
         {
             "name": "Imo-owo Nabuk",
             "email": "richienabuk@gmail.com"
